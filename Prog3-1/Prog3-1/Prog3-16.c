@@ -3,17 +3,9 @@
 #define ARRSIZE 24
 char my_bitvec[ARRSIZE / 8];
 
-int get(char *bitvec, int index) {
-	return ((0x01 << index) & *bitvec) > 0x00;
-}
-
-void set(char *bitvec, int index) {
-	*bitvec |= (0x01 << index);
-}
-
-void reset(char *bitvec, int index) {
-	*bitvec &= ~(0x01 << index);
-}
+int get(char *bitvec, int index);
+void set(char *bitvec, int index);
+void reset(char *bitvec, int index);
 
 int main(void) {
 
@@ -39,4 +31,16 @@ int main(void) {
 
 	system("pause");
 	return 0;
+}
+
+int get(char *bitvec, int index) {
+	return ((0x01 << index) & *bitvec) > 0x00;
+}
+
+void set(char *bitvec, int index) {
+	*bitvec |= (0x01 << index);
+}
+
+void reset(char *bitvec, int index) {
+	*bitvec &= ~(0x01 << index);
 }

@@ -2,8 +2,6 @@
 
 #define SWAP(a, b) {int c = a; a = b; b = c;}
 
-
-
 int main(void) {
 	int meinArray[5];
 	printf("Bitte 5 Zahlen eingeben: \n");
