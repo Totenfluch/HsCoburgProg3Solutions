@@ -1,21 +1,32 @@
 #include <stdio.h>
 #include <time.h>
 
-#define RAND_MAX 1
+#define RAND_MAX 10
+#define RAND_MIN 0
+#define MAX_TRYS 3
 
 int main(void) {
 	srand(time(0));
-	int z = (int)(10.0*rand() / (RAND_MAX + 1.0));
-	printf("Welche Zahl suchen wir\n");
-	int eingabe = -1;
-	scanf("%i", &eingabe);
-	while (z != eingabe) {
-		if (z < eingabe)
-			printf("Kleiner! Neuer versuch: ");
-		else
-			printf("Mehr!!! Neuer versuch: ");
-		scanf("%i", &eingabe);
-		printf("\n");
+	int randomNumber = ((int)10.0*rand()) % (((RAND_MAX+1) - RAND_MIN) + RAND_MIN);
+	
+	printf("Which number are we looking for? (%d - %d)\n-> ", RAND_MIN, RAND_MAX);
+	int numberInput = -1;
+
+	int trys = 0;
+	while (++trys <= MAX_TRYS) {
+		scanf("%d", &numberInput);
+		if (randomNumber > numberInput)
+			printf("That's not enough!\n-> ");
+		else if (randomNumber < numberInput)
+			printf("That's too much!\n-> ");
+		else {
+			printf("That's the right number!!\n");
+			system("pause");
+			return 0;
+		}
 	}
-	printf("GEFUNDEN!!! Es war die %i :D", z);
+
+	printf("We're out of trys :'( BYEEE\n");
+	system("pause");
+	return 0;
 }
