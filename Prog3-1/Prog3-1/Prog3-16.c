@@ -9,7 +9,6 @@ void reset(char *bitvec, int index);
 
 int main(void) {
 
-	set(my_bitvec, 0);
 	set(my_bitvec, 1);
 	set(my_bitvec, 6);
 	set(my_bitvec, 7);
@@ -22,6 +21,7 @@ int main(void) {
 
 	reset(my_bitvec, 1);
 	reset(my_bitvec, 6);
+	reset(my_bitvec, 7);
 	reset(my_bitvec, 23);
 	reset(my_bitvec, 24);
 	for (int i = 1; i <= 24; i++)
@@ -34,13 +34,19 @@ int main(void) {
 }
 
 int get(char *bitvec, int index) {
-	return ((0x01 << index) & *bitvec) > 0x00;
+	int bitIndex = index / 8;
+	int moveIndex = index - bitIndex * 8;
+	return ((0x01 << moveIndex) & *(bitvec + bitIndex)) > 0x00;
 }
 
 void set(char *bitvec, int index) {
-	*bitvec |= (0x01 << index);
+	int bitIndex = index / 8;
+	int moveIndex = index - bitIndex * 8;
+	*(bitvec + bitIndex) |= (0x01 << moveIndex);
 }
 
 void reset(char *bitvec, int index) {
-	*bitvec &= ~(0x01 << index);
+	int bitIndex = index / 8;
+	int moveIndex = index - bitIndex * 8;
+	*(bitvec + bitIndex) &= ~(0x01 << moveIndex);
 }
