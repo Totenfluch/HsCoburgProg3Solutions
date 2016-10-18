@@ -14,6 +14,7 @@ int main(void) {
 	char text[512];
 	while (1) {
 		printf("Please enter some Text('.' to exit): \n-> ");
+		fflush(stdin);
 		scanf_s(" %512[0-9a-zA-Z.,-_*'?!§$&/()=°^ ]", &text, 512);
 
 		printf("\n");

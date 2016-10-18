@@ -7,6 +7,7 @@
 
 int main(void) {
 	srand(time(0));
+	rand();
 	int randomNumber = ((int)10.0*rand()) % (((RAND_MAX+1) - RAND_MIN) + RAND_MIN);
 	
 	printf("Which number are we looking for? (%d - %d)\n-> ", RAND_MIN, RAND_MAX);
