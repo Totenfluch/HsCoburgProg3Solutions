@@ -16,15 +16,12 @@ int main(void) {
 }
 
 int substr(const char* str1, const char* str2) {
-	int maxLen = strlaenge(str1);
-	int findLen = strlaenge(str2);
-	int foundLen = 0;
-	for (int i = 0; i < maxLen; i++) {
+	for (int i = 0, foundLen = 0; i < strlaenge(str1); i++) {
 		if (str1[i] == str2[foundLen])
 			foundLen++;
 		else
 			foundLen = 0;
-		if (foundLen == findLen)
+		if (foundLen == strlaenge(str2))
 			return (i+1) - foundLen;
 	}
 	return -1;
@@ -32,8 +29,6 @@ int substr(const char* str1, const char* str2) {
 
 int strlaenge(const char* str) {
 	int len = 0;
-	int i = 0;
-	while (str[i++] != '\0')
-		len++;
-	return len;
+	while (str[len++] != '\0');
+	return len-1;
 }

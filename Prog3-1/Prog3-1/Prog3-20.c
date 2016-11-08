@@ -19,13 +19,13 @@ int main(void) {
 void strcpy1(char * s, char * t)
 {
 	int i = 0;
-	while ((s[i] = t[i]) != 0)
+	while (s[i] = t[i])
 		i++;
 }
 
 void strcpy2(char * s, char * t)
 {
-	while ((*s = *t) != 0)
+	while (*s = *t)
 	{
 		s++;
 		t++;

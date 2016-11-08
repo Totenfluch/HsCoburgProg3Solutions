@@ -4,7 +4,9 @@
 char my_bitvec[ARRSIZE / 8];
 
 int get(char *bitvec, int index);
+int getInvalid(char *bitvec, int index);
 void set(char *bitvec, int index);
+void setInvalid(char *bitvec, int index);
 void reset(char *bitvec, int index);
 
 int main(void) {
@@ -28,10 +30,24 @@ int main(void) {
 		printf("%d ", get(my_bitvec, i));
 
 	printf("\n");
+	setInvalid(my_bitvec, 7);
+	for (int i = 1; i <= 24; i++)
+		printf("%d ", getInvalid(my_bitvec, i));
+
+	printf("\n");
 
 	system("pause");
 	return 0;
 }
+
+void setInvalid(char *bitvec, int index) {
+	*(bitvec) |= (0x01 << index);
+}
+
+int getInvalid(char *bitvec, int index) {
+	return ((0x01 << index) & *(bitvec)) > 0x00;
+}
+
 
 int get(char *bitvec, int index) {
 	int bitIndex = index / 8;
