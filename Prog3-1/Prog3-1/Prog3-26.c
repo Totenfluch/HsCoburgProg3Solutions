@@ -10,7 +10,7 @@ int main(void) {
 			putchar(rCounter);
 		fclose(rf);
 	}
-
+	
 	char text[512];
 	while (1) {
 		printf("Please enter some Text('.' to exit): \n-> ");
