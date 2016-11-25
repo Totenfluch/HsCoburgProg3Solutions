@@ -27,6 +27,9 @@ int clear(struct List *list);
 int forall(struct List *list, ItemFunction exec);
 int printItem(struct Element *element);
 void print(struct List *list);
+int empty(struct List *list);
+int compare(struct Element *elem1, struct Element *elem2);
+int removeMaximum(struct List *list);
 
 void init(struct List *list) {
 	list->first = NULL;
@@ -37,15 +40,15 @@ void insert(struct List *list, int val, char* dat) {
 	struct Element * e = (struct Element *)malloc(sizeof(struct Element));
 	e->tagesproduktion = val;
 	strncpy(e->datum, dat, DATLENGTH);
-	
-	
+
+
 	e->next = list->first;
 	list->first = e;
 
 	if (!list->last) {
 		list->last = e;
 	}
-		
+
 }
 
 int removeElements(struct List *list, int val) {
@@ -64,14 +67,16 @@ int removeElements(struct List *list, int val) {
 				list->first = e->next;
 				if (e == list->last)
 					list->last = NULL;
-			}else {
+			}
+			else {
 				e2->next = e->next;
 				removeable = e;
 				e = e->next;
 				free(removeable);
 				removed++;
 			}
-		}else {
+		}
+		else {
 			e2 = e;
 			e = e->next;
 		}
@@ -98,7 +103,7 @@ int forall(struct List *list, ItemFunction exec) {
 	if (!e)
 		return 0;
 
-	for (e = list->first; e; e=e->next) {
+	for (e = list->first; e; e = e->next) {
 		exec(e);
 		foralls++;
 	}
@@ -112,6 +117,39 @@ int printItem(struct Element* element) {
 
 void print(struct List *list) {
 	forall(list, printItem);
+}
+
+int empty(struct List *list) {
+	return !list->first;
+}
+
+int compare(struct Element *elem1, struct Element *elem2) {
+	if (!elem1 || !elem2)
+		return -2;
+	int t1 = elem1->tagesproduktion;
+	int t2 = elem2->tagesproduktion;
+
+	if (t1 == t2)
+		return 0;
+	else if (t1 < t2)
+		return -1;
+	else
+		return 1;
+}
+
+int removeMaximum(struct List *list) {
+	struct Element * e = list->first;
+	struct Element * max = list->first;
+	if (!e)
+		return 0;
+
+	for (e = list->first; e; e = e->next) {
+		if (compare(e, max) == 1)
+			max = e;
+	}
+	int rValue = max->tagesproduktion;
+	removeElements(list, rValue);
+	return rValue;
 }
 
 
@@ -133,6 +171,14 @@ int main(int argc, char *argv[])
 	print(&list);
 	printf("-------\n");
 	removeElements(&list, 5);
+	print(&list);
+	printf("-------\n");
+	insert(&list, 1, "18.11.11");
+	insert(&list, 1, "19.11.11");
+	insert(&list, 5, "20.11.11");
+	insert(&list, 5, "21.11.11");
+	insert(&list, 0, "22.11.11");
+	printf("Max: %i\n", removeMaximum(&list));
 	print(&list);
 	printf("-------\n");
 	clear(&list);
