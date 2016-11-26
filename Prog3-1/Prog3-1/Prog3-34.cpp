@@ -11,7 +11,7 @@ int main(void) {
 	printf("Bitte einen Satz eingeben:\n");
 	string s;
 	getline(cin, s);
-	cout << strToUpper(s) << endl;
+	//cout << strToUpper(s) << endl;
 	cout << strToUpper2(s) << endl;
 	system("pause");
 	return 0;
@@ -28,9 +28,9 @@ string strToUpper(const string& s1){
 	return s2;
 }
 
-//
+// 2 ???
 string& strToUpper2(const string& s1) {
-	string s2;
+	string& s2;
 	s2 = " ";
 
 	for (int i = 0; i < s1.length(); i++)
