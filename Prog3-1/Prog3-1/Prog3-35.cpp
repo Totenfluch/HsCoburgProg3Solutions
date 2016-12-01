@@ -27,6 +27,7 @@ int init(int min, int max) {
 
 }
 
+
 long rand() {
 	srand(time(0));
 
