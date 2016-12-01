@@ -6,6 +6,7 @@ using namespace std;
 
 string strToUpper(const string& s1);
 string& strToUpper2(const string& s1);
+string& s3;
 
 int main(void) {
 	printf("Bitte einen Satz eingeben:\n");
@@ -17,7 +18,7 @@ int main(void) {
 	return 0;
 }
 
-// 1
+// 1 string direkt zurückgeben keine referenz
 string strToUpper(const string& s1){
 	string s2;
 	s2 = " ";
@@ -28,13 +29,12 @@ string strToUpper(const string& s1){
 	return s2;
 }
 
-// 2 ???
+// 2 referenz außerhalb halten, damit nicht verloren geht
 string& strToUpper2(const string& s1) {
-	string& s2;
-	s2 = " ";
+	s3 = " ";
 
 	for (int i = 0; i < s1.length(); i++)
-		s2 += toupper(s1[i]);
+		s3 += toupper(s1[i]);
 
-	return s2;
+	return s3;
 }
