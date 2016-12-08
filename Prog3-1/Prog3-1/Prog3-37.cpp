@@ -10,7 +10,7 @@ public:
 	Employee(Employee& other);
 	~Employee();
 	int getSalary();
-	char* getName();
+	const char* getName();
 };
 
 Employee::Employee(int newSalary) {
@@ -33,8 +33,8 @@ int Employee::getSalary() {
 	return salary; 
 }
 
-char* Employee::getName() { 
+const char* Employee::getName() { 
 	return name; 
 }
 
-#endif __EMPLOYEE_H__
+#endif

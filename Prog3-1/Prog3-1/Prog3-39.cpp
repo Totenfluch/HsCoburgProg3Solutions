@@ -12,10 +12,10 @@ public:
 	Rational(const Rational& r); // Kopierkonstruktor
 	Rational& Rational::operator=(const Rational& other);
 
-	friend void add(const Rational& a, const Rational& b);
-	friend void sub(const Rational& a, const Rational& b);
-	friend void mult(const Rational& a, const Rational& b);
-	friend void div(const Rational& a, const Rational& b);
+	friend Rational add(const Rational& a, const Rational& b);
+	friend Rational sub(const Rational& a, const Rational& b);
+	friend Rational mult(const Rational& a, const Rational& b);
+	friend Rational div(const Rational& a, const Rational& b);
 
 	void set(long z, long n);
 	void kehrwert();
@@ -44,6 +44,7 @@ Rational::Rational(const Rational& r) {
 Rational& Rational::operator=(const Rational& other) {
 	zaehler = other.zaehler;
 	nenner = other.nenner;
+	return *this;
 }
 
 long Rational::ggT(long a, long b) {
@@ -63,7 +64,7 @@ long Rational::ggT(long a, long b) {
 	return b;
 }
 
-void Rational::add(const Rational& a, const Rational& b) {
+Rational add(const Rational& a, const Rational& b) {
 	long sn = a.nenner;
 
 	long aNenner = a.nenner * b.nenner;
@@ -72,11 +73,12 @@ void Rational::add(const Rational& a, const Rational& b) {
 	long bNenner = b.nenner * sn;
 	long bZaehler = b.zaehler * sn;
 
-	nenner = aNenner;
-	zaehler = aZaehler + bZaehler;
+	long nenner = aNenner;
+	long zaehler = aZaehler + bZaehler;
+	return *(new Rational(zaehler, nenner));
 }
 
-void Rational::mult(const Rational& a, const Rational& b) {
+Rational mult(const Rational& a, const Rational& b) {
 	long sn = a.nenner;
 
 	long aNenner = a.nenner * b.nenner;
@@ -85,11 +87,12 @@ void Rational::mult(const Rational& a, const Rational& b) {
 	long bNenner = b.nenner * sn;
 	long bZaehler = b.zaehler * sn;
 
-	nenner = aNenner;
-	zaehler = aZaehler + bZaehler;
+	long nenner = aNenner;
+	long zaehler = aZaehler + bZaehler;
+	return *(new Rational(zaehler, nenner));
 }
 
-void Rational::sub(const Rational& a, const Rational& b) {
+Rational sub(const Rational& a, const Rational& b) {
 	long sn = a.nenner;
 
 	long aNenner = a.nenner * b.nenner;
@@ -98,11 +101,12 @@ void Rational::sub(const Rational& a, const Rational& b) {
 	long bNenner = b.nenner * sn;
 	long bZaehler = b.zaehler * sn;
 
-	nenner = aNenner;
-	zaehler = aZaehler - bZaehler;
+	long nenner = aNenner;
+	long zaehler = aZaehler + bZaehler;
+	return *(new Rational(zaehler, nenner));
 }
 
-void Rational::div(const Rational& a, const Rational& b) {
+Rational div(const Rational& a, const Rational& b) {
 	long sn = a.nenner;
 
 	long aNenner = a.nenner * b.nenner;
@@ -111,8 +115,9 @@ void Rational::div(const Rational& a, const Rational& b) {
 	long bNenner = b.nenner * sn;
 	long bZaehler = b.zaehler * sn;
 
-	nenner = aNenner;
-	zaehler = aZaehler + bZaehler;
+	long nenner = aNenner;
+	long zaehler = aZaehler + bZaehler;
+	return *(new Rational(zaehler, nenner));
 }
 
 void Rational::set(long z, long n) {
@@ -142,7 +147,7 @@ int main() {
 	Rational b(1, 4);
 	Rational c;
 	c.ausgabe();
-	c.add(a, b);
+	c = add(a, b);
 	c.ausgabe();
 	c.kuerzen();
 	c.ausgabe();
