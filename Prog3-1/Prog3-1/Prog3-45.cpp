@@ -27,3 +27,41 @@ public:
 	List& operator=(const List& source);
 	List& operator=(List&& source);
 };
+
+List::List(unsigned size) : leArraySize(size) {
+
+}
+
+List::List(const List& source) {
+
+}
+
+List::List(List&& source) {
+
+}
+
+List::~List() {
+
+}
+
+List::newLe() {
+
+}
+
+int List::append(float value) {
+
+}
+
+void List::deleteLE(LE* old) {
+
+}
+
+List& List::operator=(const List& source) {
+
+	return *this;
+}
+
+
+List& List::operator=(List&& source) {
+
+}
