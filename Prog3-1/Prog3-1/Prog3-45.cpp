@@ -41,7 +41,8 @@ List::List(List&& source) {
 }
 
 List::~List() {
-
+	if (leArray)
+		delete[] leArray;
 }
 
 List::newLe() {
