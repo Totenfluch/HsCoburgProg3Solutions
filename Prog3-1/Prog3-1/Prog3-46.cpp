@@ -55,7 +55,7 @@ private:
 		return a + b + c;
 	}
 public:
-	Dreieck(double lol, double polo, double kevin) : a(lol), b(polo), c(kevin) {};
+	Dreieck(double aa, double bb, double cc) : a(aa), b(bb), c(cc) {};
 };
 
 
