@@ -14,7 +14,7 @@ int f(void)
 {
 
 	int a[10] = { 3, 5, -8, 13, 21, 34, -55, 89, 144, 233 };
-	int n = 0;
+	//int n = 0;
 
 	/*if (all_of(a, a + 10, [&](int v) -> bool {
 		cout << "v: " << v << endl;
@@ -25,7 +25,7 @@ int f(void)
 	else
 		cout << n << ", -" << endl;*/
 
-	if(for_each(a, a + 10, printif))
+	if(all_of(a, a + 10, printif))
 		cout << n << ", +" << endl;
 	else
 		cout << n << ", -" << endl;

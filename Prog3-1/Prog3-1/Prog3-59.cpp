@@ -22,7 +22,7 @@ std::ostream& operator<<(std::ostream& os, const Person& obj)
 
 bool operator== (const Person &c1, const Person &c2)
 {
-	return c1.getName().compare(c2.getName());
+	return c1.getName().compare(c2.getName()) == 0;
 }
 
 class Kontakte {
