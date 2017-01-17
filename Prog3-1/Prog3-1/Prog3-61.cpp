@@ -200,9 +200,9 @@ bool operator<=   (const Set& s1, const Set& s2) {
 
 ostream& operator<< (ostream& os, const Set& s1){
 	cout << "Set (" << s1.card << "/" << s1.maxCard << ")" << endl << "Elemenete: ";
-	for (int i = 0; i < s1.maxCard; i++)
+	for (int i = 0; i < s1.card; i++)
 		if (i != s1.maxCard - 1)
-			cout << s1.elems[i] + ", ";
+			cout << s1.elems[i] << ", ";
 		else
 			cout << s1.elems[i];
 	cout << endl;
@@ -214,8 +214,13 @@ istream& operator >> (istream& is, Set& s1) {
 	int i = 0;
 	cin >> i;
 	cout << "Bitte " << i << " Elemente eingeben." << endl;
-	for (int i = 0; i < s1.maxCard; i++)
+	s1.maxCard = i;
+	s1.card = 0;
+	for (int i = 0; i < s1.maxCard; i++) {
+		cout << "Element " << (i + 1) << " of " << s1.maxCard << endl;
 		is >> s1.elems[i];
+		s1.card++;
+	}
 	return is;
 }
 
